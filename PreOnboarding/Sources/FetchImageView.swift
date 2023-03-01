@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol FetchImageViewDelegate: AnyObject {
-    func loadButtonDidTap()
-}
-
 class FetchImageView: UIView {
     
     private let loadImageView = UIImageView().then {
@@ -32,7 +28,8 @@ class FetchImageView: UIView {
     }
     
     private let deviceHeight: CGFloat = UIScreen.main.bounds.height
-    weak var delegate: FetchImageViewDelegate?
+    private let viewModel = FetchImageViewModel()
+    private var sessionTask: URLSessionDataTask?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,6 +84,10 @@ private extension FetchImageView {
 extension FetchImageView {
     @objc
     func loadButtonDidTap() {
-        delegate?.loadButtonDidTap()
+        sessionTask = viewModel.fetchImage(IMAGE_URL) { image in
+            DispatchQueue.main.async { [weak self] in
+                self?.loadImageView.image = image
+            }
+        }
     }
 }

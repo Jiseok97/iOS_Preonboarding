@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
+let IMAGE_URL: URL = URL(string: "https://source.unsplash.com/random")!
+
 class MainViewController: UIViewController {
     
     private let stackView = UIStackView().then {
@@ -28,6 +30,8 @@ class MainViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         $0.layer.cornerRadius = CGFloat(5)
     }
+    
+    private let viewModel = FetchImageViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +80,7 @@ extension MainViewController {
     @objc
     func loadAllImageButtonDidTap() {
         print("DEBUG: loadAllImageButtonDidTap")
+        
     }
 }
 
