@@ -14,7 +14,6 @@
 		B6DBAA6229AF44C700633DBF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAA6129AF44C700633DBF /* MainViewController.swift */; };
 		B6DBAA6529AF65EA00633DBF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBAA6429AF65EA00633DBF /* SnapKit */; };
 		B6DBAA6829AF65F500633DBF /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B6DBAA6729AF65F500633DBF /* Then */; };
-		B6DBAA6A29AF667B00633DBF /* FetchImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAA6929AF667B00633DBF /* FetchImageView.swift */; };
 		B6DBAA6C29AF726B00633DBF /* LoadImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DBAA6B29AF726B00633DBF /* LoadImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		B6DBAA5629AF42E700633DBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6DBAA5829AF42E700633DBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6DBAA6129AF44C700633DBF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		B6DBAA6929AF667B00633DBF /* FetchImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageView.swift; sourceTree = "<group>"; };
 		B6DBAA6B29AF726B00633DBF /* LoadImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				B6DBAA6129AF44C700633DBF /* MainViewController.swift */,
-				B6DBAA6929AF667B00633DBF /* FetchImageView.swift */,
 				B6DBAA6B29AF726B00633DBF /* LoadImageTableViewCell.swift */,
 			);
 			path = Sources;
@@ -180,7 +177,6 @@
 				B6DBAA4B29AF42E500633DBF /* AppDelegate.swift in Sources */,
 				B6DBAA6C29AF726B00633DBF /* LoadImageTableViewCell.swift in Sources */,
 				B6DBAA4D29AF42E500633DBF /* SceneDelegate.swift in Sources */,
-				B6DBAA6A29AF667B00633DBF /* FetchImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
