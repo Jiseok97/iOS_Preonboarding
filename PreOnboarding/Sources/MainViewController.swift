@@ -79,8 +79,11 @@ private extension MainViewController {
 extension MainViewController {
     @objc
     func loadAllImageButtonDidTap() {
-        print("DEBUG: loadAllImageButtonDidTap")
-        
+        firstFetchImageView.loadButtonDidTap()
+        secondFetchImageView.loadButtonDidTap()
+        thirdFetchImageView.loadButtonDidTap()
+        fourthFetchImageView.loadButtonDidTap()
+        fifthFetchImageView.loadButtonDidTap()
     }
 }
 
