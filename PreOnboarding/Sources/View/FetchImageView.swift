@@ -84,7 +84,9 @@ private extension FetchImageView {
 extension FetchImageView {
     @objc
     func loadButtonDidTap() {
-        sessionTask = viewModel.fetchImage(IMAGE_URL) { image in
+        let url = URL(string: APIConstants.IMAGE_URL)!
+        
+        sessionTask = viewModel.fetchImage(url) { image in
             DispatchQueue.main.async { [weak self] in
                 self?.loadImageView.image = image
             }

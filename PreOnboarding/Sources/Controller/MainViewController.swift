@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 import Then
 
-let IMAGE_URL: URL = URL(string: "https://source.unsplash.com/random")!
-
 class MainViewController: UIViewController {
     
     private let stackView = UIStackView().then {
