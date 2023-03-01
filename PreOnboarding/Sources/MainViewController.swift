@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class MainViewController: UIViewController {
     
@@ -13,7 +15,5 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("DEUBG: start main view controller")
-        view.backgroundColor = .link
     }
 }
