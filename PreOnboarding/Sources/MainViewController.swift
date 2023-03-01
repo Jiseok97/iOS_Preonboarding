@@ -11,10 +11,16 @@ import Then
 
 class MainViewController: UIViewController {
     
-    private let loadImageTableView = UITableView().then {
-        $0.backgroundColor = .white
-        $0.separatorStyle = .none
+    private let stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 8
     }
+    
+    private let firstFetchImageView = FetchImageView()
+    private let secondFetchImageView = FetchImageView()
+    private let thirdFetchImageView = FetchImageView()
+    private let fourthFetchImageView = FetchImageView()
+    private let fifthFetchImageView = FetchImageView()
     
     private lazy var loadAllButton = UIButton().then {
         $0.setTitle("Load All Images", for: .normal)
@@ -36,22 +42,26 @@ class MainViewController: UIViewController {
 private extension MainViewController {
     func setupViews() {
         view.backgroundColor = .white
-        view.addSubview(loadImageTableView)
+        view.addSubview(stackView)
+        
+        stackView.addArrangedSubview(firstFetchImageView)
+        stackView.addArrangedSubview(secondFetchImageView)
+        stackView.addArrangedSubview(thirdFetchImageView)
+        stackView.addArrangedSubview(fourthFetchImageView)
+        stackView.addArrangedSubview(fifthFetchImageView)
+        
         view.addSubview(loadAllButton)
     }
     
     func setupLayouts() {
-        let deviceHeight: CGFloat = UIScreen.main.bounds.height
-        
-        loadImageTableView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(deviceHeight * 0.6)
         }
         
         loadAllButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.top.equalTo(loadImageTableView.snp.bottom).offset(16)
+            $0.top.equalTo(stackView.snp.bottom).offset(16)
             $0.height.equalTo(32)
         }
     }
@@ -62,9 +72,12 @@ private extension MainViewController {
 }
 
 // MARK: - Custom helper
-private extension MainViewController {
+extension MainViewController {
     @objc
     func loadAllImageButtonDidTap() {
         print("DEBUG: loadAllImageButtonDidTap")
     }
 }
+
+
+

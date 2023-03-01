@@ -1,5 +1,5 @@
 //
-//  LoadImageTableViewCell.swift
+//  FetchImageView.swift
 //  PreOnboarding
 //
 //  Created by 이지석 on 2023/03/01.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol LoadImageCellDelegate {
+protocol FetchImageViewDelegate: AnyObject {
     func loadButtonDidTap()
 }
 
-class LoadImageTableViewCell: UITableViewCell {
+class FetchImageView: UIView {
     
     private let loadImageView = UIImageView().then {
         $0.backgroundColor = .white
-        $0.image = UIImage(named: "photo")
+        $0.image = UIImage(systemName: "photo")
         $0.tintColor = .link
     }
     
@@ -31,10 +31,15 @@ class LoadImageTableViewCell: UITableViewCell {
         $0.layer.cornerRadius = 5
     }
     
-    weak var delegate: LoadImageCellDelegate?
+    private let deviceHeight: CGFloat = UIScreen.main.bounds.height
+    weak var delegate: FetchImageViewDelegate?
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+        setupLayout()
+        setupBinding()
     }
     
     required init?(coder: NSCoder) {
@@ -42,46 +47,46 @@ class LoadImageTableViewCell: UITableViewCell {
     }
 }
 
-private extension LoadImageTableViewCell {
+private extension FetchImageView {
     func setupView() {
-        contentView.backgroundColor = .white
+        backgroundColor = .white
         
-        contentView.addSubview(loadImageView)
-        contentView.addSubview(progressView)
-        contentView.addSubview(loadButton)
+        addSubview(loadImageView)
+        addSubview(progressView)
+        addSubview(loadButton)
     }
     
     func setupLayout() {
         loadImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(24)
-            $0.top.bottom.equalToSuperview().inset(16)
-            $0.width.equalTo(168)
-            $0.height.equalTo(84)
+            $0.top.bottom.equalToSuperview()
+            $0.width.equalTo(118)
+            $0.height.equalTo(deviceHeight * 0.11)
         }
-        
+
         progressView.snp.makeConstraints {
             $0.leading.equalTo(loadImageView.snp.trailing).offset(4)
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(2)
+            $0.height.equalTo(3.5)
         }
-        
+
         loadButton.snp.makeConstraints {
+            $0.leading.equalTo(progressView.snp.trailing).offset(4)
             $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(64)
             $0.height.equalTo(32)
         }
     }
-    
+
     func setupBinding() {
         loadButton.addTarget(self, action: #selector(loadButtonDidTap), for: .touchUpInside)
     }
 }
 
-extension LoadImageTableViewCell {
+extension FetchImageView {
     @objc
     func loadButtonDidTap() {
-        print("DEBUG: loadButtonDidTap")
         delegate?.loadButtonDidTap()
     }
 }
