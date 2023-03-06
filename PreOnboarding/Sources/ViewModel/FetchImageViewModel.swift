@@ -17,7 +17,7 @@ final class FetchImageViewModel {
         let task = URLSession.shared.dataTask(with: url) { data, _, _ in
             
             guard let data = data else {
-                completion(nil)
+                completion(UIImage(named: "xmark"))
                 return
             }
             

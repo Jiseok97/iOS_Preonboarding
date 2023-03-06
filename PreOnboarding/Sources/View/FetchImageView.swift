@@ -23,6 +23,7 @@ final class FetchImageView: UIView {
     
     private lazy var loadButton = UIButton().then {
         $0.setTitle("Load", for: .normal)
+        $0.setTitle("Stop", for: .selected)
         $0.backgroundColor = .link
         $0.layer.cornerRadius = 5
     }
@@ -84,11 +85,21 @@ private extension FetchImageView {
 extension FetchImageView {
     @objc
     func loadButtonDidTap() {
+        loadButton.isSelected.toggle()
+        
+        guard loadButton.isSelected else {
+            sessionTask?.cancel()
+            return
+        }
+        
         let url = URL(string: APIConstants.IMAGE_URL)!
         
         sessionTask = viewModel.fetchImage(url) { image in
+            let image = image == nil ? UIImage(systemName: "photo") : image
+            
             DispatchQueue.main.async { [weak self] in
                 self?.loadImageView.image = image
+                self?.loadButton.isSelected = false
             }
         }
     }
