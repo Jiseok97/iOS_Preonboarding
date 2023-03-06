@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FetchImageView: UIView {
+final class FetchImageView: UIView {
     
     private let loadImageView = UIImageView().then {
         $0.backgroundColor = .white
