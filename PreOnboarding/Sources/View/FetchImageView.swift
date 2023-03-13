@@ -16,7 +16,7 @@ final class FetchImageView: UIView {
     }
     
     private let progressView = UIProgressView().then {
-        $0.progress = 0.5
+        $0.progress = 0
         $0.tintColor = .link
         $0.layer.cornerRadius = 5
     }
@@ -31,6 +31,7 @@ final class FetchImageView: UIView {
     private let deviceHeight: CGFloat = UIScreen.main.bounds.height
     private let viewModel = FetchImageViewModel()
     private var sessionTask: URLSessionDataTask?
+    private var observation: NSKeyValueObservation!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +39,11 @@ final class FetchImageView: UIView {
         setupView()
         setupLayout()
         setupBinding()
+    }
+    
+    deinit {
+        observation.invalidate()
+        observation = nil
     }
     
     required init?(coder: NSCoder) {
@@ -102,5 +108,15 @@ extension FetchImageView {
                 self?.loadButton.isSelected = false
             }
         }
+        
+        observation = sessionTask?.progress.observe(
+            \.fractionCompleted,
+             options: [.new],
+             changeHandler: { progress, _ in
+                 DispatchQueue.main.async {
+                     self.progressView.progress = Float(progress.fractionCompleted)
+                 }
+             }
+        )
     }
 }
